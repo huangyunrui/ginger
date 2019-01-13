@@ -14,6 +14,7 @@ from app.validators.forms import ClientForm, UserEmailForm
 api = Redprint('client')
 
 @api.route('/register', methods=['POST'])
+
 def create_client():
     form  = ClientForm().validate_for_api()
     promise = {
