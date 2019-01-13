@@ -4,8 +4,6 @@
 from flask import request, json
 from werkzeug.exceptions import HTTPException
 
-__author__ = 'rui'
-
 
 class APIException(HTTPException):
     code = 500

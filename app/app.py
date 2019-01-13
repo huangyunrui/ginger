@@ -14,7 +14,7 @@ def register_blueprints(app):
 def register_plugin(app):
     from app.models.base import db
     db.init_app(app)
-    #flask上下问容器
+    #flask上下文容器
     with app.app_context():
         db.create_all()
 
