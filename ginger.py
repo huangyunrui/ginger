@@ -5,7 +5,7 @@
 # @Author  : rui
 from werkzeug.exceptions import HTTPException
 
-from app.app import create_app
+from app import create_app
 from app.libs.error import APIException
 
 __author__  = 'rui'
@@ -26,8 +26,6 @@ def fraeword_error(e):
         return  APIException(msg,code,err_code)
     else:
         return APIException()
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
