@@ -34,13 +34,17 @@ class User(Base):
             user.password = secret
             db.session.add(user)
 
+    def keys(self):
+        return ['email','nickname','id','create_time']
+
 
     @staticmethod
     def verify(email, password):
         user = User.query.filter_by(email=email).first_or_404()
         if not user.checkpassword(password):
             raise AuthFailed()
-        return {'uid':user.id}
+        scope = 'AdminScope' if user.auth == 2 else 'UserScoep'
+        return {'uid':user.id,'scope':scope}
 
     def checkpassword(self,raw):
         if not self._password:

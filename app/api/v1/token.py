@@ -25,7 +25,7 @@ def get_token():
     expiration = current_app.config['TOKEN_EXPIRATION']
     token = generate_auth_token(identity['uid'],
                                 form.type.data,
-                                None,
+                                identity['scope'],
                                 expiration)
 
     t = {
@@ -33,11 +33,11 @@ def get_token():
     }
     return jsonify(t), 201
 
-def generate_auth_token(uid, ac_type, score=None,expiration=7200):
+def generate_auth_token(uid, ac_type, scope=None,expiration=7200):
     s = Serializer(current_app.config['SECRET_KEY'],expires_in=expiration)
 
     return s.dumps({
         'uid':uid,
         'type':ac_type.value,
-        'scope':score
+        'scope':scope
     })
